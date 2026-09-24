@@ -30,19 +30,19 @@ The project focuses on using SQL to clean, transform, analyze, and extract meani
 
 ```text
 
-zepto\_sql\_project/
+zepto_sql_project/
 
 │
 
 ├── dataset/
 
-│   └── zepto\_v2.csv
+│   └── zepto_v2.csv
 
 │
 
 ├── queries/
 
-│   └── zepto\_sql\_queries.sql
+│   └── zepto_sql_queries.sql
 
 │
 
@@ -334,7 +334,7 @@ LIMIT 5;
 
 SELECT category,
 
-&#x20;      AVG(mrp) AS average\_mrp
+      AVG(mrp) AS average\_mrp
 
 FROM zepto
 
@@ -352,19 +352,19 @@ GROUP BY category;
 
 SELECT
 
-&#x20;   category,
+   category,
 
-&#x20;   name,
+   name,
 
-&#x20;   mrp,
+   mrp,
 
-&#x20;   RANK() OVER (
+   RANK() OVER (
 
-&#x20;       PARTITION BY category
+       PARTITION BY category
 
-&#x20;       ORDER BY mrp DESC
+       ORDER BY mrp DESC
 
-&#x20;   ) AS price\_rank
+   ) AS price_rank
 
 FROM zepto;
 
@@ -381,12 +381,6 @@ FROM zepto;
 
 
 Screenshots of SQL queries and results are available in the `screenshots` folder.
-
-
-
-
-
-
 
 
 
