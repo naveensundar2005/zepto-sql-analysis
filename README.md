@@ -252,9 +252,9 @@ This project demonstrates several SQL concepts:
 
 \* `RANK()`
 
-\* `DENSE\_RANK()`
+\* `DENSE_RANK()`
 
-\* `ROW\_NUMBER()`
+\* `ROW_NUMBER()`
 
 \* `PARTITION BY`
 
