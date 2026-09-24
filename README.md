@@ -1,448 +1,136 @@
-# zepto-sql-analysis
+# Zepto SQL Data Analysis
 
-SQL data analysis project using the Zepto product dataset
+## About the Project
 
+This project is a SQL-based analysis of a Zepto product dataset. I used **MySQL and MySQL Workbench** to explore the data and understand different aspects of the products, such as pricing, discounts, stock availability, quantity, and product categories.
 
+The main goal of this project was to practice SQL on a real-world e-commerce dataset and use queries to answer practical business questions.
 
-\# 🛒 Zepto SQL Data Analysis Project
+## Dataset
 
+The dataset contains product-level information from Zepto, including:
 
+* Product category and name
+* MRP
+* Discount percentage
+* Discounted selling price
+* Available quantity
+* Product weight
+* Stock availability
 
-\## 📌 Project Overview
+The original dataset is available in the `dataset` folder.
 
+## What I Worked On
 
+I started by importing the dataset into MySQL and checking the structure and quality of the data. I then performed data cleaning and used SQL queries to analyze the products.
 
-This project analyzes a Zepto product dataset using \*\*MySQL\*\* to explore product pricing, discounts, inventory, stock availability, and category-wise product information.
+Some of the analysis includes:
 
+* Finding the highest and lowest priced products
+* Finding products with the highest discounts
+* Calculating average product prices
+* Checking stock availability
+* Finding products with low stock
+* Analyzing products category-wise
+* Calculating total inventory value
+* Comparing MRP with discounted selling price
+* Finding top products based on price and quantity
+* Ranking products within each category
 
+## SQL Concepts Used
 
-The project focuses on using SQL to clean, transform, analyze, and extract meaningful insights from the dataset.
+Throughout the project, I worked with different SQL concepts, including:
 
+* `SELECT` and `WHERE`
+* `DISTINCT`
+* `ORDER BY`
+* `LIMIT`
+* `LIKE`
+* `BETWEEN`
+* `AND` / `OR`
+* Aggregate functions such as `COUNT`, `SUM`, `AVG`, `MIN`, and `MAX`
+* `GROUP BY`
+* `HAVING`
+* `CASE`
+* Subqueries
+* Window functions
+* `RANK()`
+* `DENSE_RANK()`
+* `ROW_NUMBER()`
+* `PARTITION BY`
 
+## Example Queries
 
-\---
+### Finding the most expensive products
 
+```sql
+SELECT name, mrp
+FROM zepto
+ORDER BY mrp DESC
+LIMIT 5;
+```
 
+### Average price by category
 
-\## 📂 Project Structure
+```sql
+SELECT category,
+       AVG(mrp) AS average_mrp
+FROM zepto
+GROUP BY category;
+```
 
+### Ranking products within each category
 
+```sql
+SELECT
+    category,
+    name,
+    mrp,
+    RANK() OVER (
+        PARTITION BY category
+        ORDER BY mrp DESC
+    ) AS price_rank
+FROM zepto;
+```
+
+## Project Files
 
 ```text
-
 zepto_sql_project/
-
 │
-
 ├── dataset/
-
 │   └── zepto_v2.csv
-
 │
-
 ├── queries/
-
 │   └── zepto_sql_queries.sql
-
 │
-
 ├── screenshots/
-
 │   ├── ss1.png
-
 │   ├── ss2.png
-
 │   ├── ss3.png
-
 │   ├── ss4.png
-
 │   ├── ss5.png
-
 │   ├── ss6.png
-
 │   └── ss7.png
-
 │
-
 └── README.md
-
 ```
 
+The `queries` folder contains the SQL queries I used for the analysis, while the `screenshots` folder contains screenshots of my work in MySQL Workbench.
 
+## Tools Used
 
-\---
+* MySQL
+* MySQL Workbench
+* SQL
+* Git
+* GitHub
 
+## What I Learned
 
+Working on this project helped me get more comfortable with writing SQL queries and applying them to a real dataset. In particular, I got practical experience with **aggregations, grouping, subqueries, and window functions**, along with basic data cleaning and analysis.
 
-\## 📊 Dataset Description
-
-
-
-The dataset contains information about products available on Zepto.
-
-
-
-\### Main Columns
-
-
-
-| Column                   | Description                                   |
-
-| ------------------------ | --------------------------------------------- |
-
-| `category`               | Product category                              |
-
-| `name`                   | Product name                                  |
-
-| `mrp`                    | Maximum Retail Price                          |
-
-| `discountPercent`        | Discount percentage                           |
-
-| `availableQuantity`      | Available inventory quantity                  |
-
-| `discountedSellingPrice` | Selling price after discount                  |
-
-| `weightInGms`            | Product weight in grams                       |
-
-| `outOfStock`             | Indicates whether the product is out of stock |
-
-| `quantity`               | Product quantity                              |
-
-
-
-\---
-
-
-
-\## 🛠️ Tools \& Technologies
-
-
-
-\* \*\*MySQL\*\*
-
-\* \*\*MySQL Workbench\*\*
-
-\* \*\*SQL\*\*
-
-\* \*\*Git\*\*
-
-\* \*\*GitHub\*\*
-
-
-
-\---
-
-
-
-\## 🧹 Data Cleaning
-
-
-
-The project includes SQL operations for preparing the dataset for analysis, including:
-
-
-
-\* Checking product data
-
-\* Handling pricing values
-
-\* Converting price values into appropriate amounts
-
-\* Checking stock availability
-
-\* Filtering invalid or unwanted records
-
-\* Verifying discount and selling price information
-
-
-
-\---
-
-
-
-\## 🔎 SQL Concepts Used
-
-
-
-This project demonstrates several SQL concepts:
-
-
-
-\### Basic SQL
-
-
-
-\* `SELECT`
-
-\* `WHERE`
-
-\* `DISTINCT`
-
-\* `ORDER BY`
-
-\* `LIMIT`
-
-
-
-\### Filtering \& Conditions
-
-
-
-\* Comparison operators
-
-\* `AND`
-
-\* `OR`
-
-\* `BETWEEN`
-
-\* `LIKE`
-
-
-
-\### Aggregate Functions
-
-
-
-\* `COUNT()`
-
-\* `SUM()`
-
-\* `AVG()`
-
-\* `MIN()`
-
-\* `MAX()`
-
-
-
-\### Grouping
-
-
-
-\* `GROUP BY`
-
-\* `HAVING`
-
-
-
-\### Conditional Logic
-
-
-
-\* `CASE`
-
-
-
-\### Subqueries
-
-
-
-\* Single-row subqueries
-
-\* Aggregate subqueries
-
-
-
-\### Advanced SQL
-
-
-
-\* Window Functions
-
-\* `RANK()`
-
-\* `DENSE_RANK()`
-
-\* `ROW_NUMBER()`
-
-\* `PARTITION BY`
-
-
-
-\---
-
-
-
-\## 📈 Analysis Performed
-
-
-
-The project includes analysis such as:
-
-
-
-\* Finding the highest and lowest priced products
-
-\* Finding products with the highest discounts
-
-\* Finding average product prices
-
-\* Finding total product quantities
-
-\* Category-wise product analysis
-
-\* Category-wise average MRP
-
-\* Identifying low-stock products
-
-\* Identifying out-of-stock products
-
-\* Calculating discount amounts
-
-\* Calculating inventory value
-
-\* Ranking products based on price
-
-\* Ranking products within each category
-
-\* Finding top products based on different metrics
-
-
-
-\---
-
-
-
-\## 💡 Example SQL Analysis
-
-
-
-\### Find the top 5 most expensive products
-
-
-
-```sql
-
-SELECT name, mrp
-
-FROM zepto
-
-ORDER BY mrp DESC
-
-LIMIT 5;
-
-```
-
-
-
-\### Find average MRP by category
-
-
-
-```sql
-
-SELECT category,
-
-      AVG(mrp) AS average_mrp
-
-FROM zepto
-
-GROUP BY category;
-
-```
-
-
-
-\### Rank products within each category
-
-
-
-```sql
-
-SELECT
-
-   category,
-
-   name,
-
-   mrp,
-
-   RANK() OVER (
-
-       PARTITION BY category
-
-       ORDER BY mrp DESC
-
-   ) AS price_rank
-
-FROM zepto;
-
-```
-
-
-
-\---
-
-
-
-\## 📸 Project Screenshots
-
-
-
-Screenshots of SQL queries and results are available in the `screenshots` folder.
-
-
-
-\---
-
-
-
-\## 🎯 Project Objective
-
-
-
-The main objective of this project is to demonstrate practical SQL skills by working with a real-world e-commerce product dataset.
-
-
-
-The project helps analyze:
-
-
-
-\*\*Products → Pricing → Discounts → Inventory → Stock → Categories\*\*
-
-
-
-\---
-
-
-
-\## 🚀 Skills Demonstrated
-
-
-
-\* SQL Data Analysis
-
-\* Data Cleaning
-
-\* Data Filtering
-
-\* Aggregation
-
-\* Grouping
-
-\* Subqueries
-
-\* Window Functions
-
-\* Inventory Analysis
-
-\* E-commerce Data Analysis
-
-\* MySQL Workbench
-
-\* Git \& GitHub
-
-
-
-\---
-
-
-
-\## 👨‍💻 Author
-
-
+## Author
 
 Naveen S
 
