@@ -334,7 +334,7 @@ LIMIT 5;
 
 SELECT category,
 
-      AVG(mrp) AS average\_mrp
+      AVG(mrp) AS average_mrp
 
 FROM zepto
 
